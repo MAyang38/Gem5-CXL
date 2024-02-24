@@ -102,7 +102,8 @@ def build_test_system(np, isa: ISA):
     elif isa == ISA.ARM:
         test_sys = makeArmSystem(
             test_mem_mode,
-            args.machine_type,
+            "VExpress_GEM5",
+            # args.machine_type,
             np,
             bm[0],
             args.dtb_filename,
@@ -369,6 +370,7 @@ else:
                 mem=args.mem_size,
                 os_type=args.os_type,
             ),
+            c,
         ]
     else:
         bm = [
@@ -382,7 +384,8 @@ else:
 
 np = args.num_cpus
 
-isa = ObjectList.cpu_list.get_isa(args.cpu_type)
+# isa = ObjectList.cpu_list.get_isa(args.cpu_type)
+isa = ISA.ARM
 test_sys = build_test_system(np, isa)
 
 if len(bm) == 2:
